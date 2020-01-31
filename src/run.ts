@@ -32,7 +32,7 @@ export default async function run(
 ): Promise<any> {
 
     try {
-        core.info('Starting Docker image build.')
+        core.info('Logging into Docker.')
 
         const registries = [
             core.getInput('registry'),
