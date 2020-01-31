@@ -1,0 +1,22 @@
+name: 'Docker Login'
+description: 'Login into Docker (featuring multiple registries)'
+author: 'Peachjar Engineering'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+inputs:
+  registry:
+    required: true
+    description: Registry, password, and username to log into
+  registry2:
+    required: false
+    description: Registry, password, and username to log into
+  registry3:
+    required: false
+    description: Registry, password, and username to log into
+  registry4:
+    required: false
+    description: Registry, password, and username to log into
+  registry5:
+    required: false
+    description: Registry, password, and username to log into
