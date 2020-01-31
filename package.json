@@ -10,7 +10,7 @@
     "pack": "ncc build",
     "test": "./node_modules/.bin/jest --config jest.config.js --forceExit",
     "coverage": "./node_modules/.bin/jest --config jest.config.js --forceExit --coverage --verbose",
-    "all": "npm run build && npm run lint && npm run pack && npm test"
+    "all": "npm run build && npm run lint && npm run pack && npm run coverage"
   },
   "repository": {
     "type": "git",
