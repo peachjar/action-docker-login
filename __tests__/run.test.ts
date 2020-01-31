@@ -21,6 +21,7 @@ describe('Run function', () => {
                     case 'registry2': return ' quay.io  password yomama '
                     case 'registry3': return 'index.docker.io/v1/  hiphop   hurray'
                     case 'registry4': return 'reg.example.com tokentokentoken'
+                    case 'registry5': return 'foo.bar.com foobaz'
                     default: return ''
                 }
             }),
@@ -38,6 +39,37 @@ describe('Run function', () => {
             ])
             expect(exec).toHaveBeenCalledWith('docker', [
                 'login', '-u=yomama', '-p=password', 'quay.io',
+            ])
+            expect(exec).toHaveBeenCalledWith('docker', [
+                'login', '-u=hurray', '-p=hiphop', 'index.docker.io/v1/',
+            ])
+            expect(exec).toHaveBeenCalledWith('docker', [
+                'login', '-p=tokentokentoken', 'reg.example.com',
+            ])
+            expect(exec).toHaveBeenCalledWith('docker', [
+                'login', '-p=foobaz', 'foo.bar.com',
+            ])
+            expect(core.setFailed).not.toHaveBeenCalled()
+        })
+    })
+
+    describe('when some registry keys are omitted', () => {
+
+        beforeEach(() => {
+            core.getInput = jest.fn((key: string) => {
+                switch (key) {
+                    case 'registry': return 'docker.pkg.github.com abc1234 foobar'
+                    case 'registry3': return 'index.docker.io/v1/  hiphop   hurray'
+                    case 'registry4': return 'reg.example.com tokentokentoken'
+                    default: return ''
+                }
+            })
+        })
+
+        it('should log into the provided registries', async () => {
+            await run(exec, core)
+            expect(exec).toHaveBeenCalledWith('docker', [
+                'login', '-u=foobar', '-p=abc1234', 'docker.pkg.github.com',
             ])
             expect(exec).toHaveBeenCalledWith('docker', [
                 'login', '-u=hurray', '-p=hiphop', 'index.docker.io/v1/',

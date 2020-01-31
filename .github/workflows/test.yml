@@ -25,4 +25,4 @@ jobs:
     - uses: ./
       with:
         registry: docker.pkg.github.com ${{ secrets.GITHUB_TOKEN }} ${{ github.actor }}
-        registry1: quay.io ${{ secrets.QUAY_PASSWORD }} ${{ secrets.QUAY_USERNAME }}
+        registry2: quay.io ${{ secrets.QUAY_PASSWORD }} ${{ secrets.QUAY_USERNAME }}

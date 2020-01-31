@@ -1516,10 +1516,10 @@ function run(exec, core) {
             core.info('Starting Docker image build.');
             const registries = [
                 core.getInput('registry'),
-                core.getInput('registry1'),
                 core.getInput('registry2'),
                 core.getInput('registry3'),
                 core.getInput('registry4'),
+                core.getInput('registry5'),
             ].filter(Boolean);
             if (registries.length === 0) {
                 return core.setFailed('No registries specified (or key is empty).');
